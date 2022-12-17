@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+    <meta charset="UTF-8">
+    <title>lab1</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+<script defer src="main.bundle.js"></script></head>
+<body>
+<div class="wrapper">
+    <header>
+        <h2 class="header">Romanov Artemiy</h2>
+        <h2 class="header">P32302</h2>
+        <h2 class="header">3112</h2>
+    </header>
+    <div class="action-area">
+        <div class="action-area__left-subarea__output" id="graph-root">
+
+        </div>
+        <div class="action-area__left-subarea__input">
+            <form name="inputValues">
+                <label class="action-area__left-subarea__input__xInput" for="xValue-text">X coordinate:
+                    <input type="text" id="xValue-text" required name="xInput" class="action-area__left-subarea__input__xInput__field"
+                           placeholder="Insert number from '-3' to '3'"/>
+                </label>
+                <label class="action-area__left-subarea__input__yInput" for="yValue-select">Y coordinate:
+                    <select id="yValue-select" class="action-area__left-subarea__input__yInput__field" name="yInput" required>
+                        <option selected disabled>Select Y value:</option>
+                        <option value="-2">-2</option>
+                        <option value="-1.5">-1.5</option>
+                        <option value="-1">-1</option>
+                        <option value="-0.5">-0.5</option>
+                        <option value="0" >0</option>
+                        <option value="0.5">0.5</option>
+                        <option value="1">1</option>
+                        <option value="1.5">1.5</option>
+                        <option value="2">2</option>
+                    </select>
+                </label>
+                <label class="action-area__left-subarea__input__rInput" for="rValue-text">R value:
+                    <input type="text" id="rValue-text" required name="rInput" class="action-area__left-subarea__input__rInput__field"
+                           placeholder="Insert number from '1' to '4'"/>
+                </label>
+                <label class="action-area__left-subarea__input__send" for="button-send">
+                    <button type="submit" id="button-send" class="action-area__left-subarea__input__send__button" name="submitButton">Send</button>
+                </label>
+                <label class="action-area__left-subarea__input__refresh-table" for="button-refresh">
+                    <button type="button" id="button-refresh" class="action-area__left-subarea__input__refresh-table__button" name="refreshTableButton">Refresh table</button>
+                </label>
+            </form>
+        </div>
+        <div class="action-area__right-subarea__history-table">
+            <table>
+                <thead>
+                <tr>
+                    <th>X</th>
+                    <th>Y</th>
+                    <th>R</th>
+                    <th>Result</th>
+                    <th>Time</th>
+                    <th>Execution</th>
+                </tr>
+                </thead>
+                <tbody id="tableOutput">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
