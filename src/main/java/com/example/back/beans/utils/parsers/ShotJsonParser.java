@@ -7,7 +7,6 @@ import jakarta.ejb.Stateless;
 import java.io.IOException;
 import java.util.Optional;
 
-@Stateless
 public class ShotJsonParser implements JsonParser<ShotEntity> {
 
     @Override

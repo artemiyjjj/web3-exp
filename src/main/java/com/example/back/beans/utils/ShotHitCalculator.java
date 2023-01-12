@@ -4,7 +4,6 @@ import com.example.back.beans.utils.computer.Computer;
 import com.example.back.entities.Coordinates;
 import jakarta.ejb.Stateless;
 
-@Stateless
 public class ShotHitCalculator implements Computer<Coordinates> {
 
     public ShotHitCalculator() {}

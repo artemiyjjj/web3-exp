@@ -27,10 +27,8 @@ public class GreetingServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext context = getServletContext();
         RequestDispatcher dispatcher;
-        PrintWriter out = response.getWriter();
-        out.println("Hello");
-//        dispatcher = context.getRequestDispatcher(mainPage);
-//        dispatcher.forward(request, response);
+        dispatcher = context.getRequestDispatcher(mainPage);
+        dispatcher.forward(request, response);
     }
 
     @Override

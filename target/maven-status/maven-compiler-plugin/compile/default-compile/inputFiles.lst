@@ -1,0 +1,17 @@
+C:\Users\artem\Documents\web\back\src\main\java\com\example\back\beans\dao\HibernateUtil.java
+C:\Users\artem\Documents\web\back\src\main\java\com\example\back\beans\Bean.java
+C:\Users\artem\Documents\web\back\src\main\java\com\example\back\beans\services\CoordinatesService.java
+C:\Users\artem\Documents\web\back\src\main\java\com\example\back\servlets\ControllerServlet.java
+C:\Users\artem\Documents\web\back\src\main\java\com\example\back\beans\utils\parsers\ShotJsonParser.java
+C:\Users\artem\Documents\web\back\src\main\java\com\example\back\beans\services\ShotService.java
+C:\Users\artem\Documents\web\back\src\main\java\com\example\back\servlets\HelloServlet.java
+C:\Users\artem\Documents\web\back\src\main\java\com\example\back\beans\dao\DAO.java
+C:\Users\artem\Documents\web\back\src\main\java\com\example\back\beans\utils\parsers\JsonParser.java
+C:\Users\artem\Documents\web\back\src\main\java\com\example\back\beans\dao\ShotDAO.java
+C:\Users\artem\Documents\web\back\src\main\java\com\example\back\beans\utils\ShotHitCalculator.java
+C:\Users\artem\Documents\web\back\src\main\java\com\example\back\beans\utils\parsers\CoordinatesParser.java
+C:\Users\artem\Documents\web\back\src\main\java\com\example\back\beans\utils\RequestStopwatch.java
+C:\Users\artem\Documents\web\back\src\main\java\com\example\back\entities\Coordinates.java
+C:\Users\artem\Documents\web\back\src\main\java\com\example\back\servlets\GreetingServlet.java
+C:\Users\artem\Documents\web\back\src\main\java\com\example\back\entities\ShotEntity.java
+C:\Users\artem\Documents\web\back\src\main\java\com\example\back\beans\utils\computer\Computer.java

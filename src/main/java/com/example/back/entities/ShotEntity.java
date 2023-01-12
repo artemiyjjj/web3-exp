@@ -1,37 +1,46 @@
 package com.example.back.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.AttributeOverrides;
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.Column;
 
-import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 @Entity
-@Table(name = "Shots")
+@Table(name = "Shots", schema = "public")
 public class ShotEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "execution_time")
-    private Date executionTime;
-    @Column(name = "current_time")
-    private Date currentTime;
-    @Column(name = "is_hit")
-    private boolean isHit;
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride( name = "x", column = @Column(name = "x")),
-            @AttributeOverride( name = "y", column = @Column(name = "y")),
-            @AttributeOverride( name = "r", column = @Column(name = "r"))
+            @AttributeOverride( name = "x", column = @Column(name = "x", nullable = false)),
+            @AttributeOverride( name = "y", column = @Column(name = "y", nullable = false)),
+            @AttributeOverride( name = "r", column = @Column(name = "r", nullable = false))
     })
     private Coordinates coordinates;
+    @Column(name = "is_hit", nullable = false)
+    private boolean isHit;
+    @Column(name = "execution_time", nullable = false)
+    private Time executionTime;
+    @Column(name = "current_time", nullable = false)
+    private Timestamp currentTime;
 
     public ShotEntity() {}
 
-    public Date getExecutionTime() {
+    public Time getExecutionTime() {
         return executionTime;
     }
 
-    public Date getCurrentTime() {
+    public Timestamp getCurrentTime() {
         return currentTime;
     }
 
@@ -49,11 +58,11 @@ public class ShotEntity {
         this.coordinates = coordinates;
     }
 
-    public void setExecutionTime(Date executionTime) {
+    public void setExecutionTime(Time executionTime) {
         this.executionTime = executionTime;
     }
 
-    public void setCurrentTime(Date currentTime) {
+    public void setCurrentTime(Timestamp currentTime) {
         this.currentTime = currentTime;
     }
 

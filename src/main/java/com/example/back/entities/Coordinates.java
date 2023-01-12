@@ -36,4 +36,13 @@ public class Coordinates implements Serializable {
     public void setR(int r) {
         this.r = r;
     }
+
+    @Override
+    public String toString() {
+        return "Coordinates {" +
+                "x=" + x +
+                ", y=" + y +
+                ", r=" + r +
+                '}';
+    }
 }

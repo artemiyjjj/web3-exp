@@ -49,8 +49,10 @@ public class ControllerServlet extends HttpServlet {
         ServletInputStream inputStream = request.getInputStream();
         try {
             Coordinates coordinates = coordinatesService.handleCoordinates(inputStream);
+            System.out.println(coordinates.toString());
             Optional<String> maybeJson = shotService.handleShot(coordinates);
             if (maybeJson.isPresent()) {
+                System.out.println(maybeJson.get());
                 out.println(maybeJson.get());
             }
             else {

@@ -2,6 +2,7 @@ package com.example.back.beans.services;
 
 import com.example.back.beans.utils.parsers.CoordinatesParser;
 import com.example.back.entities.Coordinates;
+
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 import jakarta.servlet.ServletInputStream;
@@ -19,11 +20,9 @@ public class CoordinatesService {
 
     public Coordinates handleCoordinates(ServletInputStream inputStream) throws NoSuchElementException {
         Optional<Coordinates> maybeCoordinates = coordinatesParser.parseFromServletInputStream(inputStream);
-        Coordinates coordinates;
+        System.out.println("Parsed coordinates? " + maybeCoordinates.isPresent());
         if (maybeCoordinates.isPresent()) {
-            coordinates = maybeCoordinates.get();
-
-            return coordinates;
+            return maybeCoordinates.get();
         }
         else {
             throw new NoSuchElementException();
