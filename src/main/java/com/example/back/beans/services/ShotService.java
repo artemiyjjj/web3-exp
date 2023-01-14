@@ -22,6 +22,8 @@ public class ShotService {
     private ShotDAO shotDAO;
     @EJB
     private ShotJsonParser shotJsonParser;
+    @EJB
+    private ShotHitCalculator shotHitCalculator;
 
     public ShotService() {}
 
@@ -30,7 +32,6 @@ public class ShotService {
 
         ShotEntity shotEntity = new ShotEntity();
         String resultJson = "";
-        ShotHitCalculator shotHitCalculator = new ShotHitCalculator();
 
         boolean isHit = shotHitCalculator.calculateHit(coordinates);
 
