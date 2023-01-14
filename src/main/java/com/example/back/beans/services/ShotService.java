@@ -1,50 +1,50 @@
 package com.example.back.beans.services;
 
 import com.example.back.beans.dao.ShotDAO;
-import com.example.back.beans.utils.ShotHitCalculator;
+import com.example.back.beans.utils.computer.ShotHitCalculator;
 import com.example.back.beans.utils.parsers.ShotJsonParser;
 import com.example.back.entities.Coordinates;
 import com.example.back.entities.ShotEntity;
+import jakarta.ejb.EJB;
+import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
 
 import java.io.IOException;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Stateless
+@LocalBean
 public class ShotService {
-
-    private final ShotDAO shotDAO = new ShotDAO();
-
-    private final ShotJsonParser shotJsonParser = new ShotJsonParser();
+    @EJB
+    private ShotDAO shotDAO;
+    @EJB
+    private ShotJsonParser shotJsonParser;
 
     public ShotService() {}
 
     public Optional<String> handleShot(Coordinates coordinates) {
-        System.out.println("shot handling started...");
-        long execution_start = System.currentTimeMillis();
+        long executionStartNanos = System.nanoTime();
+
         ShotEntity shotEntity = new ShotEntity();
         String resultJson = "";
         ShotHitCalculator shotHitCalculator = new ShotHitCalculator();
 
         boolean isHit = shotHitCalculator.calculateHit(coordinates);
 
-        System.out.println("hit calculated...");
         shotEntity.setCoordinates(coordinates);
         shotEntity.setHit(isHit);
         shotEntity.setCurrentTime(new Timestamp(System.currentTimeMillis()));
-        shotEntity.setExecutionTime(new Time(System.currentTimeMillis() - execution_start));
 
-        System.out.println("starting transaction...");
+        shotEntity.setExecutionTime((System.nanoTime() - executionStartNanos)   );
+
         try {
             shotDAO.create(shotEntity);
         } catch (Exception e) {
             return Optional.empty();
         }
-        System.out.println("transaction ended...\nstarting jackson");
 
         try {
             resultJson = shotJsonParser.parseToJSON(shotEntity);
@@ -68,5 +68,7 @@ public class ShotService {
         }
         return listJsonShots;
     }
+
+
 
 }

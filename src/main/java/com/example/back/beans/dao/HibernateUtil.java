@@ -1,26 +1,37 @@
 package com.example.back.beans.dao;
 
 import com.example.back.entities.ShotEntity;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.ejb.LocalBean;
+import jakarta.ejb.Singleton;
+import jakarta.ejb.Startup;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy;
 import org.hibernate.cfg.Configuration;
 
-
+@Singleton
+@Startup
+@LocalBean
 public class HibernateUtil {
-    private static SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
-    public static void init() throws HibernateException {
+    @PostConstruct
+    public void init() throws HibernateException {
         Configuration configuration = new Configuration();
-        sessionFactory = configuration.configure()
-                .addAnnotatedClass(ShotEntity.class)
-                .buildSessionFactory();
+        configuration.setPhysicalNamingStrategy(new CamelCaseToUnderscoresNamingStrategy());
+        configuration.addAnnotatedClass(ShotEntity.class);
+        configuration.configure();
+        sessionFactory = configuration.buildSessionFactory();
     }
 
-    public static SessionFactory getSessionFactory() {
+    public SessionFactory getSessionFactory() {
         return sessionFactory;
     }
 
-    public static void closeSessionFactory() {
+    @PreDestroy
+    public void closeSessionFactory() {
         if (sessionFactory != null) {
             try {
                 sessionFactory.close();
