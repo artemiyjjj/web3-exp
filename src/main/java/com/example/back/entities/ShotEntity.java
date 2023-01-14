@@ -10,15 +10,15 @@ import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "Shots", schema = "public")
+@Table(name = "shots", schema = "public")
 public class ShotEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private int id;
     @Embedded
     @AttributeOverrides({
@@ -29,14 +29,14 @@ public class ShotEntity {
     private Coordinates coordinates;
     @Column(name = "is_hit", nullable = false)
     private boolean isHit;
-    @Column(name = "execution_time", nullable = false)
-    private Time executionTime;
-    @Column(name = "current_time", nullable = false)
+    @Column(name = "exec_time", nullable = false)
+    private double executionTime;
+    @Column(name = "cur_time", nullable = false)
     private Timestamp currentTime;
 
     public ShotEntity() {}
 
-    public Time getExecutionTime() {
+    public double getExecutionTime() {
         return executionTime;
     }
 
@@ -58,7 +58,7 @@ public class ShotEntity {
         this.coordinates = coordinates;
     }
 
-    public void setExecutionTime(Time executionTime) {
+    public void setExecutionTime(double executionTime) {
         this.executionTime = executionTime;
     }
 
@@ -67,4 +67,15 @@ public class ShotEntity {
     }
 
     public void setHit(boolean hit) { isHit = hit; }
+
+    @Override
+    public String toString() {
+        return "ShotEntity{" +
+                "id=" + id +
+                ", coordinates=" + coordinates +
+                ", isHit=" + isHit +
+                ", executionTime=" + executionTime +
+                ", currentTime=" + currentTime +
+                '}';
+    }
 }

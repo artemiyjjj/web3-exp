@@ -23,20 +23,25 @@ public class ControllerServlet extends HttpServlet {
     private ShotService shotService;
     @EJB
     private CoordinatesService coordinatesService;
-//    @EJB
-//    private RequestStopwatch timer;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        response.setContentType("application/json");
+        response.setContentType("application/json");
         StringBuilder jsonList = new StringBuilder();
-        jsonList.append("[\n");
+        jsonList.append("[");
         try {
-            shotService.getAllShots().stream().map((elem) -> jsonList.append(elem).append(",\n")).close();
+            int i = 0;
+            for (String shotJson : shotService.getAllShots()) {
+                if (i != 0) {
+                    jsonList.append(",");
+                }
+                jsonList.append("\n\t").append(shotJson);
+                i++;
+            }
         } catch (Exception e) {
             response.setStatus(400);
         }
-        jsonList.append("]\n");
+        jsonList.append("\n]\n");
         PrintWriter out = response.getWriter();
         out.print(jsonList);
         out.close();
@@ -52,7 +57,6 @@ public class ControllerServlet extends HttpServlet {
             System.out.println(coordinates.toString());
             Optional<String> maybeJson = shotService.handleShot(coordinates);
             if (maybeJson.isPresent()) {
-                System.out.println(maybeJson.get());
                 out.println(maybeJson.get());
             }
             else {

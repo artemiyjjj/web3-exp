@@ -1,9 +1,11 @@
-package com.example.back.beans.utils;
+package com.example.back.beans.utils.computer;
 
-import com.example.back.beans.utils.computer.Computer;
 import com.example.back.entities.Coordinates;
+import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
 
+@Stateless
+@LocalBean
 public class ShotHitCalculator implements Computer<Coordinates> {
 
     public ShotHitCalculator() {}

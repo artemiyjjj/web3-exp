@@ -2,11 +2,14 @@ package com.example.back.beans.utils.parsers;
 
 import com.example.back.entities.ShotEntity;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
 
 import java.io.IOException;
 import java.util.Optional;
 
+@Stateless
+@LocalBean
 public class ShotJsonParser implements JsonParser<ShotEntity> {
 
     @Override
